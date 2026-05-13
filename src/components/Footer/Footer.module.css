@@ -1,0 +1,82 @@
+.footer {
+  background: var(--black);
+  border-top: 1px solid var(--rule-subtle);
+  padding: clamp(3rem, 6vw, 5rem) 0 2rem;
+}
+
+.top {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;
+}
+
+.brand { display: flex; align-items: center; gap: 1rem; }
+.glyph {
+  font-family: var(--font-serif); font-size: 2rem;
+  font-weight: 300; color: var(--gold); line-height: 1;
+}
+.brandText { display: flex; flex-direction: column; gap: 0.15rem; }
+.brandName {
+  font-family: var(--font-serif); font-size: 1.1rem;
+  font-weight: 400; color: var(--white);
+}
+.brandRole {
+  font-size: 0.62rem; letter-spacing: 0.08em;
+  color: var(--white-muted);
+}
+
+.nav {
+  display: flex; gap: 2rem; flex-wrap: wrap;
+}
+.nav a {
+  font-size: 0.68rem; font-weight: 400;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--white-muted); transition: color 0.25s;
+}
+.nav a:hover { color: var(--gold); }
+
+/* Contact bar */
+.contactBar {
+  display: flex; align-items: center;
+  gap: 0; flex-wrap: wrap;
+  border: 1px solid var(--rule-subtle);
+  margin-bottom: 2rem;
+}
+.contactLink {
+  display: flex; flex-direction: column;
+  gap: 0.2rem; padding: 0.9rem 1.5rem;
+  flex: 1; min-width: 180px;
+  transition: background 0.25s; text-decoration: none;
+}
+a.contactLink:hover { background: var(--charcoal); }
+.contactLabel {
+  font-size: 0.56rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--white-muted);
+}
+.contactLink span:last-child {
+  font-size: 0.82rem; color: var(--white-dim);
+}
+.contactDivider {
+  width: 1px; height: 3rem;
+  background: var(--rule-subtle); flex-shrink: 0;
+}
+
+.rule {
+  height: 1px; background: var(--rule-subtle); margin-bottom: 1.75rem;
+}
+.bottom {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.bottom span, .maxim {
+  font-size: 0.62rem; letter-spacing: 0.1em;
+  color: var(--silver-dim);
+}
+.maxim { font-style: italic; }
+
+@media (max-width: 700px) {
+  .top { flex-direction: column; align-items: flex-start; }
+  .contactBar { flex-direction: column; }
+  .contactDivider { width: 100%; height: 1px; }
+  .bottom { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}

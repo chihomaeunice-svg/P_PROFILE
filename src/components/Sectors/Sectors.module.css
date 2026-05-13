@@ -1,0 +1,83 @@
+.sectors {
+  padding: clamp(5rem, 10vw, 9rem) 0;
+  background: var(--black-soft);
+}
+
+.header {
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.header.visible { opacity: 1; transform: translateY(0); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 1px;
+  background: var(--rule-subtle);
+  border: 1px solid var(--rule-subtle);
+}
+
+.card {
+  position: relative;
+  background: var(--black-soft);
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out),
+    background 0.3s;
+  text-decoration: none;
+}
+.card.cardVisible { opacity: 1; transform: translateY(0); }
+.card:hover { background: var(--charcoal); }
+.card:hover .cardBar  { transform: scaleX(1); }
+.card:hover .cardNum  { color: var(--gold); }
+.card:hover .cardCta  { color: var(--gold); gap: 0.5rem; }
+
+.cardNum {
+  font-family: var(--font-serif);
+  font-size: 0.72rem; font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--silver-dim);
+  margin-bottom: 1.5rem;
+  transition: color 0.3s;
+}
+.cardIcon {
+  width: 44px; height: 44px;
+  color: var(--gold); margin-bottom: 1.5rem;
+  opacity: 0.8; transition: opacity 0.3s;
+}
+.card:hover .cardIcon { opacity: 1; }
+.cardTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  font-weight: 300; line-height: 1.15;
+  color: var(--white); margin-bottom: 1rem;
+}
+.cardBody {
+  font-size: 0.82rem; line-height: 1.75;
+  color: var(--white-muted); flex: 1;
+}
+.cardFooter { margin-top: 1.5rem; }
+.cardCta {
+  font-size: 0.65rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--silver-dim);
+  transition: color 0.3s, gap 0.3s;
+  display: inline-flex; align-items: center; gap: 0.35rem;
+}
+.cardBar {
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-dim));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
+}
+
+@media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
