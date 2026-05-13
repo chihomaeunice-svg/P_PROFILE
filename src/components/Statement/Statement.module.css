@@ -22,10 +22,19 @@
 
 .quote {
   font-family: var(--font-serif);
-  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-size: clamp(1.3rem, 2.5vw, 1.9rem);
   font-weight: 300;
   font-style: italic;
   line-height: 1.6;
   color: var(--white-dim);
   padding: 0 clamp(0.5rem, 3vw, 2.5rem);
+  margin-bottom: 1rem;
+}
+
+.attr {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
 }

@@ -1,20 +1,20 @@
 /* ─── TOKENS ─── */
 :root {
-  --black:       #0a0a0a;
-  --black-soft:  #111111;
-  --charcoal:    #1a1a1a;
-  --charcoal-2:  #222222;
-  --charcoal-3:  #2a2a2a;
-  --gold:        #c9a84c;
-  --gold-light:  #d4b870;
-  --gold-dim:    #9a7a36;
-  --silver:      #8e9aaf;
-  --silver-dim:  #5a6070;
-  --white:       #f5f0e8;
-  --white-dim:   #c8c2b8;
-  --white-muted: #888480;
-  --rule:        rgba(201,168,76,0.18);
-  --rule-subtle: rgba(255,255,255,0.06);
+  --black:       #020e07;
+  --black-soft:  #021a10;
+  --charcoal:    #02462E;
+  --charcoal-2:  #045c3a;
+  --charcoal-3:  #067045;
+  --gold:        #FEC700;
+  --gold-light:  #FFD740;
+  --gold-dim:    #C49A00;
+  --silver:      #7aaa8a;
+  --silver-dim:  #4a6e58;
+  --white:       #f8f5e6;
+  --white-dim:   #d4ccaa;
+  --white-muted: #8a9e80;
+  --rule:        rgba(254,199,0,0.2);
+  --rule-subtle: rgba(255,255,255,0.07);
 
   --font-serif:  'Cormorant Garamond', Georgia, serif;
   --font-sans:   'Inter', system-ui, sans-serif;
@@ -77,19 +77,13 @@ input, textarea, select { font: inherit; }
   transform: translateY(28px);
   transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
 }
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal-fast {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
 }
-.reveal-fast.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal-fast.visible { opacity: 1; transform: translateY(0); }
 
 /* ─── BUTTONS ─── */
 .btn-gold {
@@ -101,7 +95,7 @@ input, textarea, select { font: inherit; }
   color: var(--black);
   font-family: var(--font-sans);
   font-size: 0.72rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   transition: background 0.3s, transform 0.3s var(--ease-out), box-shadow 0.3s;
@@ -109,7 +103,7 @@ input, textarea, select { font: inherit; }
 .btn-gold:hover {
   background: var(--gold-light);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(201,168,76,0.25);
+  box-shadow: 0 8px 32px rgba(254,199,0,0.3);
 }
 
 .btn-ghost {
@@ -117,18 +111,18 @@ input, textarea, select { font: inherit; }
   align-items: center;
   gap: 0.6rem;
   padding: 0.85rem 2rem;
-  border: 1px solid rgba(255,255,255,0.2);
-  color: var(--white-dim);
+  border: 1px solid rgba(254,199,0,0.3);
+  color: var(--gold);
   font-family: var(--font-sans);
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  transition: border-color 0.3s, color 0.3s, transform 0.3s var(--ease-out);
+  transition: border-color 0.3s, background 0.3s, transform 0.3s var(--ease-out);
 }
 .btn-ghost:hover {
   border-color: var(--gold);
-  color: var(--gold);
+  background: rgba(254,199,0,0.08);
   transform: translateY(-2px);
 }
 

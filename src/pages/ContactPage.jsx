@@ -67,7 +67,7 @@ export default function ContactPage() {
                   </div>
                 </a>
 
-                <a href="mailto:tycorn99@gmail.com" className={styles.contactItem}>
+                <a href="mailto:petermushey7@gmail.com" className={styles.contactItem}>
                   <div className={styles.contactIcon}>
                     <svg viewBox="0 0 20 20" fill="none">
                       <rect x="2" y="4" width="16" height="12" rx="1" stroke="currentColor" strokeWidth="1.3"/>
@@ -76,7 +76,7 @@ export default function ContactPage() {
                   </div>
                   <div className={styles.contactMeta}>
                     <span className={styles.contactLabel}>Email</span>
-                    <span className={styles.contactVal}>tycorn99@gmail.com</span>
+                    <span className={styles.contactVal}>petermushey7@gmail.com</span>
                   </div>
                 </a>
 
