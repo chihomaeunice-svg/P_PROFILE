@@ -1,59 +1,81 @@
 import { useState, useEffect } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import styles from './Navbar.module.css'
 
 const links = [
-  { href: '#about',   label: 'About'   },
-  { href: '#sectors', label: 'Sectors' },
-  { href: '#network', label: 'Network' },
-  { href: '#contact', label: 'Connect' },
+  { href: '#about',   label: 'About',   home: true  },
+  { href: '#sectors', label: 'Sectors', home: true  },
+  { href: '#network', label: 'Network', home: true  },
+  { to: '/contact',   label: 'Connect', home: false },
 ]
 
 export default function Navbar() {
-  const [scrolled,  setScrolled]  = useState(false)
-  const [progress,  setProgress]  = useState(0)
+  const [scrolled,   setScrolled]   = useState(false)
+  const [progress,   setProgress]   = useState(0)
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const location  = useLocation()
+  const navigate  = useNavigate()
+  const isHome    = location.pathname === '/'
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 60)
-      const doc  = document.documentElement
-      const pct  = window.scrollY / (doc.scrollHeight - doc.clientHeight)
+      const doc = document.documentElement
+      const pct = window.scrollY / (doc.scrollHeight - doc.clientHeight)
       setProgress(Math.min(pct * 100, 100))
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const closeDrawer = () => setDrawerOpen(false)
+  // Close drawer on route change
+  useEffect(() => { setDrawerOpen(false) }, [location])
 
-  const handleNavClick = (e, href) => {
-    e.preventDefault()
-    closeDrawer()
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+  const scrollTo = (hash) => {
+    if (isHome) {
+      document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      navigate('/')
+      setTimeout(() => document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' }), 120)
+    }
+  }
+
+  const handleLink = (e, link) => {
+    if (link.href) {
+      e.preventDefault()
+      setDrawerOpen(false)
+      scrollTo(link.href)
+    } else {
+      setDrawerOpen(false)
+    }
   }
 
   return (
     <>
       <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.inner}>
-          <a href="#hero" className={styles.logo} onClick={e => handleNavClick(e, '#hero')}>
+          <Link to="/" className={styles.logo}>
             <span className={styles.logoGlyph}>P</span>
             <span className={styles.logoWord}>STRATEGIC</span>
-          </a>
+          </Link>
 
           <ul className={styles.links}>
             {links.map(l => (
-              <li key={l.href}>
-                <a href={l.href} className={styles.link} onClick={e => handleNavClick(e, l.href)}>
-                  {l.label}
-                </a>
+              <li key={l.label}>
+                {l.href ? (
+                  <a href={l.href} className={styles.link} onClick={e => handleLink(e, l)}>
+                    {l.label}
+                  </a>
+                ) : (
+                  <Link to={l.to} className={`${styles.link} ${location.pathname === l.to ? styles.active : ''}`}>
+                    {l.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
 
-          <a href="#contact" className={styles.cta} onClick={e => handleNavClick(e, '#contact')}>
-            Private Inquiry
-          </a>
+          <Link to="/contact" className={styles.cta}>Private Inquiry</Link>
 
           <button
             className={`${styles.burger} ${drawerOpen ? styles.burgerOpen : ''}`}
@@ -66,17 +88,22 @@ export default function Navbar() {
         <div className={styles.progress} style={{ width: `${progress}%` }} />
       </nav>
 
-      {/* Mobile Drawer */}
-      <div className={`${styles.overlay} ${drawerOpen ? styles.overlayOpen : ''}`} onClick={closeDrawer} />
+      <div className={`${styles.overlay} ${drawerOpen ? styles.overlayOpen : ''}`}
+        onClick={() => setDrawerOpen(false)} />
+
       <div className={`${styles.drawer} ${drawerOpen ? styles.drawerOpen : ''}`}>
         {links.map(l => (
-          <a key={l.href} href={l.href} className={styles.drawerLink} onClick={e => handleNavClick(e, l.href)}>
-            {l.label}
-          </a>
+          l.href ? (
+            <a key={l.label} href={l.href} className={styles.drawerLink} onClick={e => handleLink(e, l)}>
+              {l.label}
+            </a>
+          ) : (
+            <Link key={l.label} to={l.to} className={styles.drawerLink}>
+              {l.label}
+            </Link>
+          )
         ))}
-        <a href="#contact" className={styles.drawerCta} onClick={e => handleNavClick(e, '#contact')}>
-          Private Inquiry
-        </a>
+        <Link to="/contact" className={styles.drawerCta}>Private Inquiry</Link>
       </div>
     </>
   )

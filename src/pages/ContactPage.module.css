@@ -1,0 +1,214 @@
+.page { background: var(--black); min-height: 100vh; }
+
+/* ─── Hero ─── */
+.hero {
+  position: relative;
+  padding: 9rem var(--gutter) 4rem;
+  background: var(--black);
+  overflow: hidden;
+}
+.heroBg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 100% at 70% 50%, rgba(201,168,76,0.05) 0%, transparent 70%),
+    repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(201,168,76,0.04) 80px),
+    repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(201,168,76,0.04) 80px);
+  pointer-events: none;
+}
+.heroBody { position: relative; z-index: 1; max-width: 640px; }
+.heroTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--white);
+  margin: 0.5rem 0 1rem;
+}
+.heroSub {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--white-muted);
+}
+
+/* ─── Content ─── */
+.content {
+  padding: clamp(3rem, 6vw, 6rem) 0 clamp(4rem, 8vw, 7rem);
+  background: var(--black-soft);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: start;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+.layout.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── Profile Card ─── */
+.details { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.profileCard {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: var(--charcoal);
+  border: 1px solid var(--rule);
+  padding: 1.5rem;
+}
+.avatar {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, var(--charcoal-2), var(--charcoal-3));
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.name {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.2;
+}
+.role {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--white-muted);
+  margin-top: 0.2rem;
+}
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-top: 0.4rem;
+  text-transform: uppercase;
+}
+.locDot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* Contact items */
+.contactItems {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--rule-subtle);
+}
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--rule-subtle);
+  transition: background 0.25s;
+  text-decoration: none;
+}
+.contactItem:last-child { border-bottom: none; }
+a.contactItem:hover { background: var(--charcoal); }
+.contactIcon {
+  width: 20px; height: 20px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.contactMeta { display: flex; flex-direction: column; gap: 0.15rem; }
+.contactLabel {
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--white-muted);
+}
+.contactVal { font-size: 0.85rem; color: var(--white-dim); }
+
+.note {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--white-muted);
+}
+.noteDash { color: var(--gold); font-style: normal; }
+
+/* ─── Form ─── */
+.formWrap {
+  background: var(--charcoal);
+  border: 1px solid var(--rule-subtle);
+  padding: clamp(1.75rem, 3vw, 2.75rem);
+}
+.formHeader { margin-bottom: 1.5rem; }
+.form { display: flex; flex-direction: column; gap: 1.25rem; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.field { display: flex; flex-direction: column; gap: 0.45rem; }
+.label {
+  font-size: 0.6rem; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--white-muted);
+}
+.input, .textarea, .select {
+  background: var(--charcoal-2);
+  border: 1px solid var(--rule-subtle);
+  color: var(--white-dim);
+  padding: 0.75rem 1rem;
+  font-size: 0.84rem; width: 100%;
+  transition: border-color 0.25s, background 0.25s;
+  outline: none; -webkit-appearance: none; appearance: none;
+}
+.input::placeholder, .textarea::placeholder { color: var(--silver-dim); }
+.input:focus, .textarea:focus, .select:focus {
+  border-color: var(--gold-dim); background: var(--charcoal-3);
+}
+.textarea { resize: vertical; min-height: 120px; line-height: 1.65; }
+.selectWrap { position: relative; }
+.selectArrow {
+  position: absolute; right: 1rem; top: 50%;
+  transform: translateY(-50%); width: 12px; height: 8px;
+  color: var(--silver-dim); pointer-events: none;
+}
+.formFooter {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 1rem;
+  flex-wrap: wrap; padding-top: 0.5rem;
+}
+.formNote { font-size: 0.68rem; color: var(--white-muted); font-style: italic; }
+.submit {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  padding: 0.85rem 2rem; background: var(--gold); color: var(--black);
+  font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; white-space: nowrap;
+  transition: background 0.3s, transform 0.3s var(--ease-out), box-shadow 0.3s;
+}
+.submit:hover {
+  background: var(--gold-light); transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201,168,76,0.25);
+}
+
+/* Success */
+.success {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 4rem 2rem; gap: 1rem;
+}
+.successIcon {
+  width: 56px; height: 56px; border: 1px solid var(--gold); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; color: var(--gold); margin-bottom: 0.5rem;
+}
+.success h3 {
+  font-family: var(--font-serif); font-size: 1.5rem;
+  font-weight: 300; color: var(--white);
+}
+.success p { font-size: 0.85rem; color: var(--white-muted); line-height: 1.7; }
+
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .row { grid-template-columns: 1fr; } }

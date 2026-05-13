@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom'
 import useInView from '../../hooks/useInView'
 import styles from './Sectors.module.css'
 
 const sectors = [
   {
-    num: '01',
+    num: '01', path: '/real-estate',
     title: ['Real Estate', 'Opportunities'],
     body: 'Premium land, commercial developments, and high-value property investments across strategic East African markets.',
     icon: (
@@ -16,7 +17,7 @@ const sectors = [
     ),
   },
   {
-    num: '02',
+    num: '02', path: '/investment',
     title: ['Investment', 'Networking'],
     body: 'Connecting capital with verified, curated opportunities across infrastructure, technology, and emerging sectors.',
     icon: (
@@ -30,7 +31,7 @@ const sectors = [
     ),
   },
   {
-    num: '03',
+    num: '03', path: '/trade',
     title: ['International', 'Trade'],
     body: 'Cross-border trade relationships, market entry strategies, and bilateral commercial engagements across continents.',
     icon: (
@@ -43,7 +44,7 @@ const sectors = [
     ),
   },
   {
-    num: '04',
+    num: '04', path: '/facilitation',
     title: ['Project', 'Facilitation'],
     body: 'End-to-end coordination of complex multi-stakeholder projects from concept through to execution and delivery.',
     icon: (
@@ -56,7 +57,7 @@ const sectors = [
     ),
   },
   {
-    num: '05',
+    num: '05', path: '/corporate',
     title: ['Corporate', 'Connections'],
     body: 'Direct access to C-suite executives, board-level decision makers, and institutional partners across sectors and borders.',
     icon: (
@@ -81,11 +82,8 @@ export default function Sectors() {
           <div className="section-label">Areas of Operation</div>
           <h2 className="section-heading">Strategic Sectors</h2>
         </div>
-
         <div className={styles.grid}>
-          {sectors.map((s, i) => (
-            <SectorCard key={s.num} sector={s} index={i} />
-          ))}
+          {sectors.map((s, i) => <SectorCard key={s.num} sector={s} index={i} />)}
         </div>
       </div>
     </section>
@@ -96,7 +94,8 @@ function SectorCard({ sector, index }) {
   const [ref, inView] = useInView()
 
   return (
-    <article
+    <Link
+      to={sector.path}
       ref={ref}
       className={`${styles.card} ${inView ? styles.cardVisible : ''}`}
       style={{ transitionDelay: `${index * 90}ms` }}
@@ -107,7 +106,10 @@ function SectorCard({ sector, index }) {
         {sector.title[0]}<br />{sector.title[1]}
       </h3>
       <p className={styles.cardBody}>{sector.body}</p>
+      <div className={styles.cardFooter}>
+        <span className={styles.cardCta}>Explore Sector →</span>
+      </div>
       <div className={styles.cardBar} />
-    </article>
+    </Link>
   )
 }

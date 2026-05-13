@@ -13,7 +13,7 @@ export default function About() {
           <div className={`${styles.visual} ${inView ? styles.visible : ''}`}>
             <div className={styles.frame}>
               <div className={styles.frameBg} />
-              <div className={styles.glyph}>P</div>
+              <div className={styles.glyph}>PM</div>
               <div className={styles.ring} />
               <span className={`${styles.corner} ${styles.tl}`} />
               <span className={`${styles.corner} ${styles.tr}`} />
@@ -21,7 +21,7 @@ export default function About() {
               <span className={`${styles.corner} ${styles.br}`} />
             </div>
             <div className={styles.tag}>
-              <span>Strategic Connector</span>
+              <span>Peter Mushi</span>
               <span className={styles.tagDot}>·</span>
               <span>East Africa</span>
             </div>
@@ -37,7 +37,7 @@ export default function About() {
               At the intersection of capital, relationships, and opportunity lives a rare kind of operator — one who understands not just what deals look like, but how they move.
             </p>
             <p className={styles.bodySecondary}>
-              Operating across East Africa and international markets, this practice is built on discretion, precision, and a network cultivated over more than a decade of high-level engagement. Whether facilitating investment, structuring partnerships, or opening doors that remain closed to most — the work is quiet, intentional, and consistently effective.
+              Peter Mushi operates across East Africa and international markets, building on a practice grounded in discretion, precision, and a network cultivated over more than a decade of high-level engagement. Whether facilitating investment, structuring partnerships, or opening doors that remain closed to most — the work is quiet, intentional, and consistently effective.
             </p>
             <ul className={styles.pillars}>
               {['Strategic Discretion', 'Network Depth', 'Cross-Border Intelligence'].map(p => (
