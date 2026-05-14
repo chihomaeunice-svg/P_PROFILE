@@ -13,7 +13,7 @@ export default function About() {
           <div className={`${styles.visual} ${inView ? styles.visible : ''}`}>
             <div className={styles.frame}>
               <div className={styles.frameBg} />
-              <img src="/eagle.png" alt="Golden Eagle" className={styles.eagleImg} />
+              <img src="/PM_Eagel.jpg" alt="Golden Eagle" className={styles.eagleImg} />
               <div className={styles.ring} />
               <span className={`${styles.corner} ${styles.tl}`} />
               <span className={`${styles.corner} ${styles.tr}`} />
