@@ -48,6 +48,11 @@ export default function Hero() {
       {/* Noise grain */}
       <div className={styles.grain} />
 
+      {/* Right-side decorative emblem */}
+      <div className={styles.emblem} aria-hidden="true">
+        <HeroEmblem />
+      </div>
+
       <div className={styles.body}>
         <div className={`${styles.eyebrow} ${mounted ? styles.visible : ''}`}>
           <span className={styles.eyebrowDot} />
@@ -116,6 +121,84 @@ export default function Hero() {
         <div className={styles.scrollBar}><div className={styles.scrollThumb} /></div>
       </div>
     </section>
+  )
+}
+
+function HeroEmblem() {
+  const radials = Array.from({ length: 24 }, (_, i) => {
+    const a = (i * 15 * Math.PI) / 180
+    return {
+      x1: 200 + Math.cos(a) * 48,  y1: 200 + Math.sin(a) * 48,
+      x2: 200 + Math.cos(a) * 185, y2: 200 + Math.sin(a) * 185,
+    }
+  })
+  const diamonds = [[200,15],[385,200],[200,385],[15,200]]
+
+  return (
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="efade" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stopColor="#FEC700" stopOpacity="0.18"/>
+          <stop offset="60%"  stopColor="#FEC700" stopOpacity="0.1"/>
+          <stop offset="100%" stopColor="#FEC700" stopOpacity="0"/>
+        </radialGradient>
+      </defs>
+
+      {/* Radial fill */}
+      <circle cx="200" cy="200" r="190" fill="url(#efade)"/>
+
+      {/* Concentric rings */}
+      {[185, 148, 112, 78, 48].map((r, i) => (
+        <circle key={r} cx="200" cy="200" r={r}
+          stroke="#FEC700" strokeWidth="0.6"
+          opacity={0.18 - i * 0.025}/>
+      ))}
+
+      {/* Radial lines */}
+      {radials.map((l, i) => (
+        <line key={i} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
+          stroke="#FEC700" strokeWidth="0.5" opacity="0.1"/>
+      ))}
+
+      {/* Crosshairs */}
+      <line x1="200" y1="15"  x2="200" y2="385" stroke="#FEC700" strokeWidth="0.4" opacity="0.12"/>
+      <line x1="15"  y1="200" x2="385" y2="200" stroke="#FEC700" strokeWidth="0.4" opacity="0.12"/>
+
+      {/* Diamond markers at compass points */}
+      {diamonds.map(([x, y], i) => (
+        <path key={i} d={`M${x} ${y-6} L${x+6} ${y} L${x} ${y+6} L${x-6} ${y} Z`}
+          fill="#FEC700" opacity="0.28"/>
+      ))}
+
+      {/* Central PM monogram */}
+      <text x="200" y="218" textAnchor="middle"
+        fontFamily="Cormorant Garamond, Georgia, serif"
+        fontSize="80" fontWeight="300"
+        fill="#FEC700" opacity="0.13" letterSpacing="-3">PM</text>
+
+      {/* Circular text path */}
+      <path id="etxt" d="M 200 28 A 172 172 0 1 1 199.9 28" fill="none"/>
+      <text fontSize="7.5" letterSpacing="7.2" fill="#FEC700" opacity="0.22"
+        fontFamily="Inter, sans-serif" fontWeight="400">
+        <textPath href="#etxt" startOffset="2%">
+          PETER MUSHI · EAST AFRICA · STRATEGIC ADVISOR · BUSINESS DEVELOPER ·
+        </textPath>
+      </text>
+
+      {/* Inner tick marks */}
+      {Array.from({ length: 48 }, (_, i) => {
+        const a = (i * 7.5 * Math.PI) / 180
+        const isMain = i % 4 === 0
+        const r1 = isMain ? 138 : 142
+        return (
+          <line key={i}
+            x1={200 + Math.cos(a) * r1}  y1={200 + Math.sin(a) * r1}
+            x2={200 + Math.cos(a) * 148} y2={200 + Math.sin(a) * 148}
+            stroke="#FEC700" strokeWidth={isMain ? 1 : 0.4}
+            opacity={isMain ? 0.22 : 0.1}/>
+        )
+      })}
+    </svg>
   )
 }
 
