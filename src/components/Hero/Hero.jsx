@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import useMagnet from '../../hooks/useMagnet'
 import useCounter from '../../hooks/useCounter'
 import useInView from '../../hooks/useInView'
@@ -87,10 +88,9 @@ export default function Hero() {
             </a>
           </div>
           <div ref={magnet2} className={styles.magnetWrap}>
-            <a href="#contact" className="btn-ghost"
-              onClick={e => { e.preventDefault(); scroll('#contact') }}>
+            <Link to="/contact" className="btn-ghost">
               Initiate Contact
-            </a>
+            </Link>
           </div>
         </div>
       </div>

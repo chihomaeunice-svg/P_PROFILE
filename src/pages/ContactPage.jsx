@@ -1,6 +1,12 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
+import emailjs from '@emailjs/browser'
 import useInView from '../hooks/useInView'
 import styles from './ContactPage.module.css'
+
+const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 const sectors = [
   'Real Estate Opportunities',
@@ -13,11 +19,35 @@ const sectors = [
 
 export default function ContactPage() {
   const [ref, inView] = useInView()
-  const [submitted, setSubmitted] = useState(false)
+  const formRef = useRef(null)
+  const [status, setStatus] = useState('idle') // idle | sending | success | error
   const [form, setForm] = useState({ name: '', org: '', email: '', sector: '', message: '' })
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-  const handleSubmit = e => { e.preventDefault(); setSubmitted(true) }
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    if (!form.name || !form.email || !form.message) return
+    setStatus('sending')
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name:  form.name,
+          from_org:   form.org || '—',
+          from_email: form.email,
+          sector:     form.sector || 'General Inquiry',
+          message:    form.message,
+          reply_to:   form.email,
+        },
+        PUBLIC_KEY
+      )
+      setStatus('success')
+    } catch {
+      setStatus('error')
+    }
+  }
 
   return (
     <div className={styles.page}>
@@ -27,6 +57,7 @@ export default function ContactPage() {
         <div className={styles.heroBg} />
         <div className="container">
           <div className={styles.heroBody}>
+            <Link to="/" className={styles.back}>← Back to Home</Link>
             <div className="section-label">Private Inquiry</div>
             <h1 className={styles.heroTitle}>Begin the Conversation</h1>
             <p className={styles.heroSub}>
@@ -115,23 +146,23 @@ export default function ContactPage() {
 
             {/* Form */}
             <div className={styles.formWrap}>
-              {submitted ? (
+              {status === 'success' ? (
                 <div className={styles.success}>
                   <div className={styles.successIcon}>✓</div>
                   <h3>Inquiry Received</h3>
                   <p>Peter will review your message and respond within 48 hours.</p>
                 </div>
               ) : (
-                <form className={styles.form} onSubmit={handleSubmit} noValidate>
+                <form ref={formRef} className={styles.form} onSubmit={handleSubmit} noValidate>
                   <div className={styles.formHeader}>
                     <div className="section-label">Send a Message</div>
                   </div>
                   <div className={styles.row}>
-                    <Field label="Full Name"     name="name"  type="text"  placeholder="Your full name"         value={form.name}  onChange={handleChange} required />
-                    <Field label="Organization"  name="org"   type="text"  placeholder="Company or institution"  value={form.org}   onChange={handleChange} />
+                    <Field label="Full Name"    name="name"  type="text"  placeholder="Your full name"        value={form.name}  onChange={handleChange} required />
+                    <Field label="Organization" name="org"   type="text"  placeholder="Company or institution" value={form.org}   onChange={handleChange} />
                   </div>
                   <div className={styles.row}>
-                    <Field label="Email Address" name="email" type="email" placeholder="Your email address"      value={form.email} onChange={handleChange} required />
+                    <Field label="Email Address" name="email" type="email" placeholder="Your email address"   value={form.email} onChange={handleChange} required />
                     <div className={styles.field}>
                       <label className={styles.label}>Area of Interest</label>
                       <div className={styles.selectWrap}>
@@ -154,11 +185,22 @@ export default function ContactPage() {
                       value={form.message} onChange={handleChange}
                     />
                   </div>
+
+                  {status === 'error' && (
+                    <p className={styles.errorMsg}>
+                      Something went wrong. Please email directly at petermushey7@gmail.com
+                    </p>
+                  )}
+
                   <div className={styles.formFooter}>
                     <p className={styles.formNote}>Confidential. Reviewed personally by Peter Mushi.</p>
-                    <button type="submit" className={styles.submit}>
-                      <span>Send to Peter</span>
-                      <span>→</span>
+                    <button
+                      type="submit"
+                      className={`${styles.submit} ${status === 'sending' ? styles.submitSending : ''}`}
+                      disabled={status === 'sending'}
+                    >
+                      <span>{status === 'sending' ? 'Sending…' : 'Send to Peter'}</span>
+                      {status !== 'sending' && <span>→</span>}
                     </button>
                   </div>
                 </form>
