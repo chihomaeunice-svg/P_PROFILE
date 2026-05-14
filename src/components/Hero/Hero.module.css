@@ -36,6 +36,30 @@
   );
 }
 
+/* Right-side decorative emblem */
+.emblem {
+  position: absolute;
+  right: -8%;
+  top: 50%;
+  transform: translateY(-52%);
+  width: clamp(360px, 45vw, 580px);
+  aspect-ratio: 1;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.9;
+  mask-image: radial-gradient(ellipse 55% 55% at 45% 50%,
+    rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 45%, rgba(0,0,0,0) 72%);
+  -webkit-mask-image: radial-gradient(ellipse 55% 55% at 45% 50%,
+    rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 45%, rgba(0,0,0,0) 72%);
+  animation: emblemSpin 90s linear infinite;
+}
+@keyframes emblemSpin {
+  from { transform: translateY(-52%) rotate(0deg); }
+  to   { transform: translateY(-52%) rotate(360deg); }
+}
+
+@media (max-width: 900px) { .emblem { display: none; } }
+
 .body {
   position: relative; z-index: 2;
   padding: calc(5rem + 80px) var(--gutter) 6rem;

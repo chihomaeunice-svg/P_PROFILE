@@ -25,12 +25,16 @@
   background: linear-gradient(135deg, var(--forest), var(--forest-mid));
   border: 1px solid var(--gold-dim);
 }
-.glyph {
+.eagle {
   position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-serif); font-size: 5rem;
-  font-weight: 300; color: var(--gold); opacity: 0.9;
-  letter-spacing: -0.02em;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  padding: 1.5rem;
+  filter: drop-shadow(0 0 18px rgba(254,199,0,0.25));
+  transition: filter 0.4s ease;
+}
+.frame:hover .eagle {
+  filter: drop-shadow(0 0 30px rgba(254,199,0,0.45));
 }
 .ring {
   position: absolute; inset: 1.2rem;
