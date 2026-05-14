@@ -1,0 +1,20 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--forest);
+  z-index: 9000;
+  pointer-events: none;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.35s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.overlay.enter {
+  transform: scaleY(1);
+  transform-origin: bottom;
+}
+.overlay.exit {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.35s 0.05s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.overlay.idle { transform: scaleY(0); }

@@ -42,9 +42,9 @@ export default function Footer() {
             <span>+255 786 792 165</span>
           </a>
           <div className={styles.contactDivider} />
-          <a href="mailto:tycorn99@gmail.com" className={styles.contactLink}>
+          <a href="mailto:petermushey7@gmail.com" className={styles.contactLink}>
             <span className={styles.contactLabel}>Email</span>
-            <span>tycorn99@gmail.com</span>
+            <span>petermushey7@gmail.com</span>
           </a>
           <div className={styles.contactDivider} />
           <div className={styles.contactLink}>
