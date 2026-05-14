@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import emailjs from '@emailjs/browser'
 import useInView from '../hooks/useInView'
 import styles from './ContactPage.module.css'
@@ -56,6 +57,7 @@ export default function ContactPage() {
         <div className={styles.heroBg} />
         <div className="container">
           <div className={styles.heroBody}>
+            <Link to="/" className={styles.back}>← Back to Home</Link>
             <div className="section-label">Private Inquiry</div>
             <h1 className={styles.heroTitle}>Begin the Conversation</h1>
             <p className={styles.heroSub}>

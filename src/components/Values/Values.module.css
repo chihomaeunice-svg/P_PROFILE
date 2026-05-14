@@ -3,6 +3,7 @@
   background: var(--forest);
   border-top: 1px solid rgba(254,199,0,0.1);
   border-bottom: 1px solid rgba(254,199,0,0.1);
+  overflow: hidden;
 }
 
 .row { display: flex; align-items: stretch; }

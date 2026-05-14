@@ -22,10 +22,13 @@
 
 .back {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--on-dark-muted); margin-bottom: 2rem; transition: color 0.25s;
+  font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 2rem; transition: color 0.25s, opacity 0.25s;
+  opacity: 0.75;
+  border: 1px solid rgba(254,199,0,0.25);
+  padding: 0.45rem 0.9rem;
 }
-.back:hover { color: var(--gold); }
+.back:hover { color: var(--gold); opacity: 1; border-color: var(--gold); }
 
 .heroNum {
   font-family: var(--font-serif); font-size: 0.75rem;
