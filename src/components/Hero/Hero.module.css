@@ -5,194 +5,120 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  background: var(--black);
+  background: var(--forest);
 }
 
-/* Canvas layers */
-.canvas {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.pattern {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
+.canvas { position: absolute; inset: 0; pointer-events: none; }
+.pattern { position: absolute; inset: 0; width: 100%; height: 100%; }
 .vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 60% 40%, transparent 20%, rgba(10,10,10,0.7) 70%, rgba(10,10,10,0.95) 100%);
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 60% 40%, transparent 20%, rgba(1,45,30,0.65) 70%, rgba(1,45,30,0.92) 100%);
 }
 .gradientOverlay {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(10,10,10,0.4) 0%,
-    rgba(10,10,10,0.1) 40%,
-    rgba(10,10,10,0.7) 85%,
-    rgba(10,10,10,1)   100%
+    rgba(1,45,30,0.35) 0%,
+    rgba(1,45,30,0.05) 40%,
+    rgba(1,45,30,0.65) 85%,
+    rgba(1,45,30,1)    100%
   );
 }
 
-/* Body */
 .body {
-  position: relative;
-  z-index: 2;
+  position: relative; z-index: 2;
   padding: calc(5rem + 80px) var(--gutter) 6rem;
-  max-width: var(--container);
-  margin: 0 auto;
-  width: 100%;
+  max-width: var(--container); margin: 0 auto; width: 100%;
 }
 
-/* Eyebrow */
 .eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.65rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--silver);
-  margin-bottom: 2rem;
-  opacity: 0;
-  transform: translateY(10px);
+  display: flex; align-items: center; gap: 0.75rem;
+  font-size: 0.65rem; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--on-dark-muted); margin-bottom: 2rem;
+  opacity: 0; transform: translateY(10px);
   transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
 }
 .eyebrow.visible { opacity: 1; transform: translateY(0); }
 .eyebrowDot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--gold);
-  flex-shrink: 0;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0;
 }
 
-/* Heading */
 .heading {
-  display: flex;
-  flex-direction: column;
+  display: flex; flex-direction: column;
   font-family: var(--font-serif);
   font-size: clamp(3.5rem, 9vw, 8.5rem);
-  font-weight: 300;
-  line-height: 0.96;
+  font-weight: 300; line-height: 0.96;
   letter-spacing: -0.02em;
-  color: var(--white);
-  margin-bottom: 2rem;
+  color: var(--on-dark); margin-bottom: 2rem;
 }
 .hLine {
-  display: block;
-  opacity: 0;
+  display: block; opacity: 0;
   transform: translateY(40px) skewX(-1deg);
   transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
 }
 .hLine.lineVisible { opacity: 1; transform: translateY(0) skewX(0deg); }
 .hItalic { font-style: italic; color: var(--gold); padding-left: clamp(2rem, 5vw, 5rem); }
 
-/* Sub */
 .sub {
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--white-muted);
-  margin-bottom: 2.5rem;
-  opacity: 0;
-  transform: translateY(12px);
+  font-size: 0.7rem; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--on-dark-muted); margin-bottom: 2.5rem;
+  opacity: 0; transform: translateY(12px);
   transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
 }
 
-/* Actions */
 .actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  opacity: 0;
-  transform: translateY(12px);
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  opacity: 0; transform: translateY(12px);
   transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
 }
 
 .fadeVisible { opacity: 1 !important; transform: translateY(0) !important; }
 
-/* Metrics */
 .metrics {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 0;
+  position: relative; z-index: 2;
+  display: flex; align-items: center; gap: 0;
   padding: 1.5rem var(--gutter);
-  border-top: 1px solid var(--rule-subtle);
-  max-width: var(--container);
-  margin: 0 auto;
-  width: 100%;
-  opacity: 0;
-  transform: translateY(12px);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  max-width: var(--container); margin: 0 auto; width: 100%;
+  opacity: 0; transform: translateY(12px);
   transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
 }
 .metricsItem { display: flex; align-items: center; }
-.metric {
-  display: flex;
-  flex-direction: column;
-  padding: 0 2.5rem;
-}
+.metric { display: flex; flex-direction: column; padding: 0 2.5rem; }
 .metric:first-child { padding-left: 0; }
-.metricSep {
-  width: 1px;
-  height: 2.5rem;
-  background: var(--rule-subtle);
-}
+.metricSep { width: 1px; height: 2.5rem; background: rgba(255,255,255,0.1); }
 .metricVal {
   font-family: var(--font-serif);
   font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1;
+  font-weight: 300; color: var(--on-dark); line-height: 1;
 }
 .metricLbl {
-  font-size: 0.6rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--white-muted);
-  margin-top: 0.3rem;
+  font-size: 0.6rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--on-dark-muted); margin-top: 0.3rem;
 }
 
-/* Scroll cue */
 .scrollCue {
-  position: absolute;
-  bottom: 2rem;
-  right: var(--gutter);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  opacity: 0;
-  transition: opacity 0.7s var(--ease-out);
+  position: absolute; bottom: 2rem; right: var(--gutter);
+  z-index: 2; display: flex; flex-direction: column;
+  align-items: center; gap: 0.5rem;
+  opacity: 0; transition: opacity 0.7s var(--ease-out);
 }
 .scrollLabel {
-  font-size: 0.55rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--white-muted);
+  font-size: 0.55rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--on-dark-muted);
   writing-mode: vertical-rl;
 }
 .scrollBar {
-  width: 1px;
-  height: 60px;
-  background: var(--rule-subtle);
-  position: relative;
-  overflow: hidden;
+  width: 1px; height: 60px;
+  background: rgba(255,255,255,0.15);
+  position: relative; overflow: hidden;
 }
 .scrollThumb {
-  position: absolute;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--gold);
+  position: absolute; top: -100%; left: 0;
+  width: 100%; height: 100%; background: var(--gold);
   animation: scrollThumbAnim 2s ease-in-out infinite;
 }
 @keyframes scrollThumbAnim {
