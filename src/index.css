@@ -57,11 +57,16 @@ body {
   line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  /* iOS momentum scrolling */
+  -webkit-overflow-scrolling: touch;
 }
 a { color: inherit; text-decoration: none; }
-img, svg { display: block; }
+img, svg { display: block; max-width: 100%; }
 ul { list-style: none; }
-button { cursor: pointer; border: none; background: none; font: inherit; }
+/* iOS tap highlight removal */
+* { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; border: none; background: none; font: inherit; touch-action: manipulation; }
+a { touch-action: manipulation; }
 input, textarea, select { font: inherit; }
 
 /* ─── UTILITY ─── */
