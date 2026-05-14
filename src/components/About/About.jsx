@@ -13,7 +13,7 @@ export default function About() {
           <div className={`${styles.visual} ${inView ? styles.visible : ''}`}>
             <div className={styles.frame}>
               <div className={styles.frameBg} />
-              <EagleSvg />
+              <img src="/eagle.png" alt="Golden Eagle" className={styles.eagleImg} />
               <div className={styles.ring} />
               <span className={`${styles.corner} ${styles.tl}`} />
               <span className={`${styles.corner} ${styles.tr}`} />
@@ -55,7 +55,7 @@ export default function About() {
   )
 }
 
-function EagleSvg() {
+function _EagleSvgUnused() {
   return (
     <svg className={styles.eagle} viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
