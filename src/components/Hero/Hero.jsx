@@ -95,27 +95,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Metrics */}
-      <div
-        ref={statsRef}
-        className={`${styles.metrics} ${mounted ? styles.fadeVisible : ''}`}
-        style={{ transitionDelay: '1100ms' }}
-      >
-        {[
-          { val: `${count12}+`, lbl: 'Years Active', animate: true },
-          { val: '5',           lbl: 'Core Sectors'     },
-          { val: 'Pan‑Africa',  lbl: '& International'  },
-        ].map((m, i) => (
-          <div key={m.lbl} className={styles.metricsItem}>
-            {i > 0 && <div className={styles.metricSep} />}
-            <div className={styles.metric}>
-              <span className={styles.metricVal}>{m.val}</span>
-              <span className={styles.metricLbl}>{m.lbl}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-
       <div className={`${styles.scrollCue} ${mounted ? styles.fadeVisible : ''}`} style={{ transitionDelay: '1400ms' }}>
         <span className={styles.scrollLabel}>Scroll</span>
         <div className={styles.scrollBar}><div className={styles.scrollThumb} /></div>
